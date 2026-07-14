@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
+<title>Bel-Nebula — Connect</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Sora:wght@500;600;700&family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@500;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="style.css" />
+</head>
+<body>
+
+  <main class="screen">
+
+    <!-- ============ HERO ============ -->
+    <section class="hero">
+      <div class="pulse-mark" aria-hidden="true">
+        <span class="ring ring--1"></span>
+        <span class="ring ring--2"></span>
+        <span class="ring ring--3"></span>
+        <span class="core">BN</span>
+      </div>
+      <h1 class="brand">Bel-Nebula</h1>
+      <p class="tagline">Campus WiFi, paid by the hour, day, week or month.</p>
+      <p class="status-line" id="statusLine">Not connected yet</p>
+    </section>
+
+    <!-- ============ STEP 1: PICK A PACKAGE ============ -->
+    <section class="panel" id="pickPanel">
+      <h2 class="panel-title"><span class="step-no">1</span>Choose your time</h2>
+      <div class="packages" id="packageList">
+        <!-- package cards injected by script.js -->
+      </div>
+    </section>
+
+    <!-- ============ STEP 2: PHONE NUMBER ============ -->
+    <section class="panel" id="phonePanel">
+      <h2 class="panel-title"><span class="step-no">2</span>Your phone number</h2>
+      <input
+        type="tel"
+        id="phoneInput"
+        class="phone-input"
+        placeholder="080X XXX XXXX"
+        inputmode="numeric"
+        autocomplete="tel"
+      />
+      <p class="hint">We use this to send your receipt. No spam, no calls.</p>
+    </section>
+
+    <!-- ============ SUCCESS STATE ============ -->
+    <section class="panel panel--success" id="successPanel" hidden>
+      <div class="success-icon" aria-hidden="true">✓</div>
+      <h2 class="success-title">You're connected</h2>
+      <p class="success-sub" id="successPackageLabel">24 Hours — unlimited</p>
+
+      <div class="countdown-card">
+        <span class="countdown-label">Time remaining</span>
+        <span class="countdown-value" id="countdownValue">--:--:--</span>
+      </div>
+
+      <div class="credentials" id="credentialsBox">
+        <div class="cred-row">
+          <span class="cred-label">Hotspot username</span>
+          <span class="cred-value" id="credUsername">—</span>
+        </div>
+        <div class="cred-row">
+          <span class="cred-label">Hotspot password</span>
+          <span class="cred-value" id="credPassword">—</span>
+        </div>
+      </div>
+      <p class="hint">Save these — if you get disconnected mid-session, you can log back in with them until your time runs out.</p>
+    </section>
+
+    <!-- ============ ERROR STATE ============ -->
+    <p class="error-line" id="errorLine" hidden></p>
+
+  </main>
+
+  <!-- ============ STICKY PAY BAR ============ -->
+  <footer class="pay-bar" id="payBar">
+    <div class="pay-bar__info">
+      <span class="pay-bar__label" id="payBarLabel">Select a package</span>
+      <span class="pay-bar__price" id="payBarPrice">₦0</span>
+    </div>
+    <button class="pay-bar__button" id="payButton" disabled>Pay &amp; connect</button>
+  </footer>
+
+  <script src="https://js.paystack.co/v1/inline.js"></script>
+  <script src="config.js"></script>
+  <script src="script.js"></script>
+</body>
+</html>
