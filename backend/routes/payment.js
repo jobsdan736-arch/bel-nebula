@@ -32,8 +32,7 @@ router.post('/payment/initialize', async (req, res) => {
     const reference = buildReference();
     // Paystack requires an email; students usually won't have one handy on
     // a captive portal, so we synthesize one from their phone number.
-    const billingEmail = email || `${phone.replace(/\D/g, '')}@belnebula.customer`;
-
+   const billingEmail = email || `${phone.replace(/\D/g, '')}@belnebula.ng`;
     const tx = await paystack.initializeTransaction({
       email: billingEmail,
       amountNaira: pkg.priceNaira,
