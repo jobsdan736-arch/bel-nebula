@@ -137,10 +137,8 @@
       payButtonEl.textContent = 'Pay & connect';
     }
   }
-
-  function openPaystackPopup(initData) {
-    const popup = new PaystackPop();
-    popup.resumeTransaction(initData.accessCode, {
+function openPaystackPopup(initData) {
+    PaystackPop.resumeTransaction(initData.accessCode, {
       onSuccess: function (transaction) {
         verifyPayment(transaction.reference || initData.reference);
       },
