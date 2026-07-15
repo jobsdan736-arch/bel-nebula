@@ -138,22 +138,21 @@
     }
   }
 function openPaystackPopup(initData) {
-    PaystackPop.resumeTransaction(initData.accessCode, {
-      onSuccess: function (transaction) {
+    const handler = PaystackPop.setup({
+      key: initData.publicKey,
+      email: initData.billingEmail,
+      amount: Math.round(initData.amountNaira * 100),
+      ref: initData.reference,
+      callback: function (transaction) {
         verifyPayment(transaction.reference || initData.reference);
       },
-      onCancel: function () {
-        payButtonEl.disabled = false;
-        payButtonEl.textContent = 'Pay & connect';
-      },
-      onError: function (err) {
-        showError('Payment failed: ' + (err.message || 'please try again.'));
+      onClose: function () {
         payButtonEl.disabled = false;
         payButtonEl.textContent = 'Pay & connect';
       },
     });
+    handler.openIframe();
   }
-
   async function verifyPayment(reference) {
     payButtonEl.textContent = 'Confirming payment…';
     try {

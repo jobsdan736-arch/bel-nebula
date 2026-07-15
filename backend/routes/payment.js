@@ -47,6 +47,7 @@ router.post('/payment/initialize', async (req, res) => {
       accessCode: tx.access_code,
       publicKey: process.env.PAYSTACK_PUBLIC_KEY,
       amountNaira: pkg.priceNaira,
+      billingEmail,
     });
   } catch (err) {
     console.error('initialize error:', err.response?.data || err.message);
